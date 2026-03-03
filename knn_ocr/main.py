@@ -64,7 +64,7 @@ recognition_results = []
 for file_number in range(7):
     current_image = imread(data_directory / "task" / f"{file_number}.png")
     grayscale_img = np.mean(current_image, 2).astype('u1')
-    binary_img = grayscale_img > 6  # Здесь тоже оставляем > 6
+    binary_img = grayscale_img > 6 
 
     labeled_components = label(binary_img)
     component_regions = regionprops(labeled_components)
@@ -118,3 +118,4 @@ for idx in range(7):
 
 
 print(f'Точность распознавания: {correct_predictions/total_characters:.4f}')
+
