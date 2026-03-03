@@ -4,7 +4,7 @@ from pathlib import Path
 from skimage.measure import regionprops, label
 from skimage.io import imread
 
-data_directory = Path("D:/buzinaevatv_cv/cv2026/knn_ocr")
+data_directory = Path("./task")
 
 def extractor(image):
     if image.ndim == 2:
@@ -115,5 +115,6 @@ for idx in range(7):
     for char_idx in range(min(len(recognition_results[idx]), len(ground_truth[idx]))):
         if recognition_results[idx][char_idx] == ground_truth[idx][char_idx]:
             correct_predictions += 1
+
 
 print(f'Точность распознавания: {correct_predictions/total_characters:.4f}')
