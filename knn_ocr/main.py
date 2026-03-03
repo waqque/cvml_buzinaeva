@@ -55,14 +55,14 @@ def make_train(path):
 
     return train, responses, label_names
 
-train_data, train_labels, label_dictionary = make_train(data_directory / "task/train")
+train_data, train_labels, label_dictionary = make_train(data_directory / "train")
 knn_model = cv2.ml.KNearest.create()
 knn_model.train(train_data, cv2.ml.ROW_SAMPLE, train_labels)
 
 recognition_results = []
 
 for file_number in range(7):
-    current_image = imread(data_directory / "task" / f"{file_number}.png")
+    current_image = imread(data_directory / f"{file_number}.png")
     grayscale_img = np.mean(current_image, 2).astype('u1')
     binary_img = grayscale_img > 6 
 
@@ -116,6 +116,4 @@ for idx in range(7):
         if recognition_results[idx][char_idx] == ground_truth[idx][char_idx]:
             correct_predictions += 1
 
-
 print(f'Точность распознавания: {correct_predictions/total_characters:.4f}')
-
